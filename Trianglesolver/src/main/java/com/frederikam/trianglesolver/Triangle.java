@@ -201,7 +201,7 @@ public class Triangle {
 
     public ComponentType getNextRemainingSide() {
         List<Component> components = getSides();
-        if(components.size() >= 2) {
+        if(components.size() >= 3) {
             throw new IllegalArgumentException("List too long");
         }
 
