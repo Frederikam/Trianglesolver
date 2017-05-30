@@ -6,12 +6,22 @@ import java.util.List;
 public class Triangle {
 
     public enum ComponentType {
-        ANGLE_A,
-        ANGLE_B,
-        ANGLE_C,
-        SIDE_A,
-        SIDE_B,
-        SIDE_C
+        ANGLE_A(true),
+        ANGLE_B(true),
+        ANGLE_C(true),
+        SIDE_A(false),
+        SIDE_B(false),
+        SIDE_C(false);
+
+        boolean isAngle;
+
+        ComponentType(boolean isAngle) {
+            this.isAngle = isAngle;
+        }
+
+        public boolean isAngle() {
+            return isAngle;
+        }
     }
 
     public class Component {
@@ -112,6 +122,66 @@ public class Triangle {
 
     public Component getOpposing(Component comp) {
         return getOpposing(comp.type);
+    }
+
+    public ComponentType getNextRemainingAngle(List<Component> components) {
+        if(components.size() == 3) {
+            throw new IllegalArgumentException("List too long");
+        }
+
+        boolean present[] = {
+                false,
+                false
+        };
+
+        for (Component comp : components) {
+            switch (comp.type) {
+                case ANGLE_A:
+                    present[0] = true;
+                    break;
+                case ANGLE_B:
+                    present[1] = true;
+                    break;
+            }
+        }
+
+        if(present[0]) {
+            return ComponentType.ANGLE_A;
+        } else if(present[1]) {
+            return ComponentType.ANGLE_B;
+        } else {
+            return ComponentType.ANGLE_C;
+        }
+    }
+
+    public ComponentType getNextRemainingSide(List<Component> components) {
+        if(components.size() >= 2) {
+            throw new IllegalArgumentException("List too long");
+        }
+
+        boolean present[] = {
+                false,
+                false
+        };
+
+        for (Component comp : components) {
+            switch (comp.type) {
+                case SIDE_A:
+                    present[0] = true;
+                    break;
+                case SIDE_B:
+                    present[1] = true;
+                    break;
+            }
+        }
+
+        if(present[0]) {
+            return ComponentType.SIDE_A;
+        } else if(present[1]) {
+            return ComponentType.SIDE_B;
+        } else {
+            return ComponentType.SIDE_C;
+        }
     }
 
     @Override
