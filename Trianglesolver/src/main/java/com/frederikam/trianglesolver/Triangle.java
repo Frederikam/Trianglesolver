@@ -73,6 +73,7 @@ public class Triangle {
         switch (type) {
             case ANGLE_A:
                 A = value;
+                break;
             case ANGLE_B:
                 B = value;
                 break;
@@ -170,9 +171,9 @@ public class Triangle {
             }
         }
 
-        if(present[0]) {
+        if(!present[0]) {
             return ComponentType.ANGLE_A;
-        } else if(present[1]) {
+        } else if(!present[1]) {
             return ComponentType.ANGLE_B;
         } else {
             return ComponentType.ANGLE_C;
@@ -201,9 +202,9 @@ public class Triangle {
             }
         }
 
-        if(present[0]) {
+        if(!present[0]) {
             return ComponentType.SIDE_A;
-        } else if(present[1]) {
+        } else if(!present[1]) {
             return ComponentType.SIDE_B;
         } else {
             return ComponentType.SIDE_C;
