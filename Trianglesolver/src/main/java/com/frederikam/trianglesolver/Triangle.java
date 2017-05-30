@@ -124,7 +124,8 @@ public class Triangle {
         return getOpposing(comp.type);
     }
 
-    public ComponentType getNextRemainingAngle(List<Component> components) {
+    public ComponentType getNextRemainingAngle() {
+        List<Component> components = getAngles();
         if(components.size() == 3) {
             throw new IllegalArgumentException("List too long");
         }
@@ -154,7 +155,8 @@ public class Triangle {
         }
     }
 
-    public ComponentType getNextRemainingSide(List<Component> components) {
+    public ComponentType getNextRemainingSide() {
+        List<Component> components = getSides();
         if(components.size() >= 2) {
             throw new IllegalArgumentException("List too long");
         }
