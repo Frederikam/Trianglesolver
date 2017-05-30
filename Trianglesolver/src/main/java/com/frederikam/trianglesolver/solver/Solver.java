@@ -28,8 +28,11 @@ public class Solver {
     }
 
     private static Triangle on0Angles(Triangle triangle) {
-        //todo
-        return triangle;
+        if (triangle.getSideCount() != 3) {
+            return triangle;
+        } else {
+            return CosinusSolver.calcAllAngles(triangle);
+        }
     }
 
     private static Triangle on1Angle(Triangle triangle) {
