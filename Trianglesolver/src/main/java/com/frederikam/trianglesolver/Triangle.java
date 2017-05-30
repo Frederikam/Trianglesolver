@@ -34,12 +34,12 @@ public class Triangle {
         }
     }
 
-    public Double A;
-    public Double B;
-    public Double C;
-    public Double a;
-    public Double b;
-    public Double c;
+    private Double A;
+    private Double B;
+    private Double C;
+    private Double a;
+    private Double b;
+    private Double c;
 
     public Triangle(Double A, Double B, Double C, Double a, Double b, Double c) {
         this.A = A;
@@ -208,6 +208,26 @@ public class Triangle {
             return ComponentType.SIDE_B;
         } else {
             return ComponentType.SIDE_C;
+        }
+    }
+
+    public List<Component> getFeet(ComponentType type) {
+        List<Component> list = new ArrayList<>();
+        switch (type) {
+            case SIDE_A:
+                list.add(get(ComponentType.SIDE_B));
+                list.add(get(ComponentType.SIDE_C));
+                return list;
+            case SIDE_B:
+                list.add(get(ComponentType.SIDE_A));
+                list.add(get(ComponentType.SIDE_C));
+                return list;
+            case SIDE_C:
+                list.add(get(ComponentType.SIDE_A));
+                list.add(get(ComponentType.SIDE_B));
+                return list;
+            default:
+                throw new IllegalArgumentException("Must be a side");
         }
     }
 
