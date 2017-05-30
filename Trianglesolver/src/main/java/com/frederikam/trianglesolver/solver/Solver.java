@@ -11,8 +11,6 @@ public class Solver {
     private static final Logger log = LoggerFactory.getLogger(Solver.class);
 
     public static Triangle solve(Triangle triangle) {
-        log.info("Attempting to solve: " + triangle);
-
         switch (triangle.getAngleCount()) {
             case 0:
                 return on0Angles(triangle);

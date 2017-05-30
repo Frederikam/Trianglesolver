@@ -13,6 +13,15 @@ public class Triangle {
         SIDE_B(false),
         SIDE_C(false);
 
+        public static final ComponentType[] ALL = {
+                ANGLE_A,
+                ANGLE_B,
+                ANGLE_C,
+                SIDE_A,
+                SIDE_B,
+                SIDE_C
+        };
+
         boolean isAngle;
 
         ComponentType(boolean isAngle) {

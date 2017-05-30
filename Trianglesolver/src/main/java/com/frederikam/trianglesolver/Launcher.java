@@ -10,6 +10,8 @@ public class Launcher {
 
     public static void main(String[] args) {
         Triangle triangle = new Triangle(30d, 50d, null, null, null, null);
+
+        log.info("Attempting to solve: " + triangle);
         triangle = Solver.solve(triangle);
 
         log.info("Solved triangle: " + triangle.toString());
