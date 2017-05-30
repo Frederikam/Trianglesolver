@@ -137,11 +137,11 @@ public class Triangle {
         return components;
     }
 
-    public int getAngleCount() {
+    public int getAnglesCount() {
         return getAngles().size();
     }
 
-    public int getSideCount() {
+    public int getSidesCount() {
         return getSides().size();
     }
 

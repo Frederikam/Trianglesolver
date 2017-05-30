@@ -11,7 +11,7 @@ public class Solver {
     private static final Logger log = LoggerFactory.getLogger(Solver.class);
 
     public static Triangle solve(Triangle triangle) {
-        switch (triangle.getAngleCount()) {
+        switch (triangle.getAnglesCount()) {
             case 0:
                 return on0Angles(triangle);
             case 1:
@@ -26,16 +26,29 @@ public class Solver {
     }
 
     private static Triangle on0Angles(Triangle triangle) {
-        if (triangle.getSideCount() != 3) {
+        if (triangle.getSidesCount() != 3) {
             return triangle;
         } else {
-            return CosinusSolver.calcAllAngles(triangle);
+            return CosineSolver.calcAllAngles(triangle);
         }
     }
 
     private static Triangle on1Angle(Triangle triangle) {
-        //todo
-        return triangle;
+        if (triangle.getSidesCount() < 2) {
+            return triangle;
+        } else if(triangle.getSidesCount() == 2) {
+            // If we are missing the side which opposes our known angle we can use cosine
+            Triangle.Component angle = triangle.getAngles().get(0);
+            Triangle.Component opposing = angle.getOpposing();
+            if(opposing.value == null) {
+                CosineSolver.solveLastSide(triangle);
+                return CosineSolver.calcAllAngles(triangle);
+            } else {
+                return SineSolver.solve(triangle);
+            }
+        } else {
+            return SineSolver.solve(triangle);
+        }
     }
 
     private static Triangle on2Angles(Triangle triangle) {
@@ -60,15 +73,14 @@ public class Solver {
             return null;
         }
 
-        int sideCount = triangle.getSideCount();
+        int sideCount = triangle.getSidesCount();
         if(sideCount == 0 || sideCount == 3) {
             return triangle;
         } else if (sideCount == 1) {
-            // TODO: 30-May-17
-            return triangle;
+            return SineSolver.solve(triangle);
         } else {
             // 2
-            return CosinusSolver.solveLastSide(triangle);
+            return CosineSolver.solveLastSide(triangle);
         }
 
     }

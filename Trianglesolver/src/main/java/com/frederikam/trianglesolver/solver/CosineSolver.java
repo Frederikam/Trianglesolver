@@ -4,7 +4,7 @@ import com.frederikam.trianglesolver.Triangle;
 
 import java.util.List;
 
-class CosinusSolver {
+class CosineSolver {
 
     static Triangle solveLastSide(Triangle triangle) {
         Triangle.ComponentType side = triangle.getNextRemainingSide();
@@ -20,8 +20,12 @@ class CosinusSolver {
         return Math.sqrt(Math.pow(s1, 2) + Math.pow(s2, 2) - 2 * s1 * s2 * Math.cos(opposingAngle));
     }
 
-    public static Triangle calcAllAngles(Triangle triangle) {
-        while (triangle.getAngleCount() != 3) {
+    static Triangle calcAllAngles(Triangle triangle) {
+        if(triangle.getSidesCount() != 3) {
+            throw new IllegalArgumentException("All 3 sides must be known");
+        }
+
+        while (triangle.getAnglesCount() != 3) {
             Triangle.ComponentType nextAngle = triangle.getNextRemainingAngle();
             Triangle.Component opposingSide = triangle.getOpposing(nextAngle);
             List<Triangle.Component> feet = opposingSide.getFeet();
