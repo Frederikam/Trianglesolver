@@ -69,6 +69,30 @@ public class Triangle {
         }
     }
 
+    public void put(ComponentType type, Double value) {
+        switch (type) {
+            case ANGLE_A:
+                A = value;
+            case ANGLE_B:
+                B = value;
+                break;
+            case ANGLE_C:
+                C = value;
+                break;
+            case SIDE_A:
+                a = value;
+                break;
+            case SIDE_B:
+                b = value;
+                break;
+            case SIDE_C:
+                c = value;
+                break;
+            default:
+                throw new RuntimeException("No valid case");
+        }
+    }
+
     public List<Component> getAngles() {
         List<Component> components = new ArrayList<>();
         if(A != null)
