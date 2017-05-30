@@ -25,12 +25,22 @@ public class Triangle {
     }
 
     public class Component {
+        private final Triangle triangle;
         public final ComponentType type;
         public Double value;
 
-        private Component(ComponentType type, Double value) {
+        Component(Triangle triangle, ComponentType type, Double value) {
+            this.triangle = triangle;
             this.type = type;
             this.value = value;
+        }
+
+        public Component getOpposing() {
+            return triangle.getOpposing(this);
+        }
+
+        public List<Component> getFeet() {
+            return triangle.getFeet(type);
         }
     }
 
@@ -53,17 +63,17 @@ public class Triangle {
     public Component get(ComponentType type) {
         switch (type) {
             case ANGLE_A:
-                return new Component(ComponentType.ANGLE_A, A);
+                return new Component(this, ComponentType.ANGLE_A, A);
             case ANGLE_B:
-                return new Component(ComponentType.ANGLE_B, B);
+                return new Component(this, ComponentType.ANGLE_B, B);
             case ANGLE_C:
-                return new Component(ComponentType.ANGLE_C, C);
+                return new Component(this, ComponentType.ANGLE_C, C);
             case SIDE_A:
-                return new Component(ComponentType.SIDE_A, a);
+                return new Component(this, ComponentType.SIDE_A, a);
             case SIDE_B:
-                return new Component(ComponentType.SIDE_B, b);
+                return new Component(this, ComponentType.SIDE_B, b);
             case SIDE_C:
-                return new Component(ComponentType.SIDE_C, c);
+                return new Component(this, ComponentType.SIDE_C, c);
             default:
                 throw new RuntimeException("No valid case");
         }
@@ -97,11 +107,11 @@ public class Triangle {
     public List<Component> getAngles() {
         List<Component> components = new ArrayList<>();
         if(A != null)
-            components.add(new Component(ComponentType.ANGLE_A, A));
+            components.add(new Component(this, ComponentType.ANGLE_A, A));
         if(B != null)
-            components.add(new Component(ComponentType.ANGLE_B, B));
+            components.add(new Component(this, ComponentType.ANGLE_B, B));
         if(C != null)
-            components.add(new Component(ComponentType.ANGLE_C, C));
+            components.add(new Component(this, ComponentType.ANGLE_C, C));
 
         return components;
     }
@@ -109,11 +119,11 @@ public class Triangle {
     public List<Component> getSides() {
         List<Component> components = new ArrayList<>();
         if(a != null)
-            components.add(new Component(ComponentType.SIDE_A, a));
+            components.add(new Component(this, ComponentType.SIDE_A, a));
         if(b != null)
-            components.add(new Component(ComponentType.SIDE_B, b));
+            components.add(new Component(this, ComponentType.SIDE_B, b));
         if(c != null)
-            components.add(new Component(ComponentType.SIDE_C, c));
+            components.add(new Component(this, ComponentType.SIDE_C, c));
 
         return components;
     }

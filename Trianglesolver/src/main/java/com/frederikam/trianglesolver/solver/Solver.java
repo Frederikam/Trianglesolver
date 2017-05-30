@@ -47,8 +47,29 @@ public class Solver {
     }
 
     private static Triangle on3Angles(Triangle triangle) {
-        //todo
-        return triangle;
+        // Validate the angles in case of invalid input
+        Double sum = 0d;
+        sum += triangle.get(Triangle.ComponentType.ANGLE_A).value;
+        sum += triangle.get(Triangle.ComponentType.ANGLE_B).value;
+        sum += triangle.get(Triangle.ComponentType.ANGLE_C).value;
+
+        Double diff = 180d - sum;
+        if(Math.abs(diff) > 0.00000001d) {
+            log.error("The sum of all angles must be 180 degrees");
+            return null;
+        }
+
+        int sideCount = triangle.getSideCount();
+        if(sideCount == 0 || sideCount == 3) {
+            return triangle;
+        } else if (sideCount == 1) {
+            // TODO: 30-May-17
+            return triangle;
+        } else {
+            // 2
+            return CosinusSolver.solveLastSide(triangle);
+        }
+
     }
 
 }
