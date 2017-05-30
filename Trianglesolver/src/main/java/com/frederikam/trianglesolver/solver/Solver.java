@@ -51,7 +51,7 @@ public class Solver {
         }
     }
 
-    private static Triangle on2Angles(Triangle triangle) {
+    static Triangle on2Angles(Triangle triangle) {
         List<Triangle.Component> angles = triangle.getAngles();
         Triangle.ComponentType thirdAngle = triangle.getNextRemainingAngle();
 

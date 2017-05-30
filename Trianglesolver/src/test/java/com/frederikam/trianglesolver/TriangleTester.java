@@ -47,19 +47,15 @@ public class TriangleTester {
 
     @Test
     void test1Angle2Sides() {
-        Triangle input = new Triangle(null, 35d, null, null, 50d, 35d);
-        Triangle target = new Triangle(41.51917d, 67.22587, 71.25496, 133d, 185d, 190d);
-        testTriangle(input, target);
-
-        input = new Triangle(null, 35d, null, null, 35d, 50d);
-        target = new Triangle(89.97573d, 35d, 55.02427d, 61.02063d, 35d, 50d);
+        Triangle input = new Triangle(null, 35d, null, null, 35d, 50d);
+        Triangle target = new Triangle(89.97573d, 35d, 55.02427d, 61.02063d, 35d, 50d);
         testTriangle(input, target);
     }
 
     @Test
     void test2Angles1Side() {
         Triangle input = new Triangle(50d, 60d, null, null, null, 5d);
-        Triangle target = new Triangle(50d, 60d, 70d, 5d, 5d, 5d);
+        Triangle target = new Triangle(50d, 60d, 70d, 4.07603d, 4.60802d, 5d);
         testTriangle(input, target);
     }
 

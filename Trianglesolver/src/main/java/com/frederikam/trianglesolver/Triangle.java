@@ -6,12 +6,12 @@ import java.util.List;
 public class Triangle {
 
     public enum ComponentType {
-        ANGLE_A(true),
-        ANGLE_B(true),
-        ANGLE_C(true),
-        SIDE_A(false),
-        SIDE_B(false),
-        SIDE_C(false);
+        ANGLE_A,
+        ANGLE_B,
+        ANGLE_C,
+        SIDE_A,
+        SIDE_B,
+        SIDE_C;
 
         public static final ComponentType[] ALL = {
                 ANGLE_A,
@@ -21,16 +21,6 @@ public class Triangle {
                 SIDE_B,
                 SIDE_C
         };
-
-        boolean isAngle;
-
-        ComponentType(boolean isAngle) {
-            this.isAngle = isAngle;
-        }
-
-        public boolean isAngle() {
-            return isAngle;
-        }
     }
 
     public class Component {
@@ -50,6 +40,14 @@ public class Triangle {
 
         public List<Component> getFeet() {
             return triangle.getFeet(type);
+        }
+
+        @Override
+        public String toString() {
+            return "Component{" +
+                    "type=" + type +
+                    ", value=" + value +
+                    '}';
         }
     }
 
