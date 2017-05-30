@@ -114,4 +114,15 @@ public class Triangle {
         return getOpposing(comp.type);
     }
 
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "A=" + A +
+                ", B=" + B +
+                ", C=" + C +
+                ", a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                '}';
+    }
 }
