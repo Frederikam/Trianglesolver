@@ -61,8 +61,8 @@ public class TriangleTester {
 
     @Test
     void testCosineAngles() {
-        Triangle input = new Triangle(50d, null, 70d, 5d, null, 5d);
-        Triangle target = new Triangle(50d, 60d, 70d, 5d, 5d, 5d);
+        Triangle input = new Triangle(50d, null, null, 5d, null, 5d);
+        Triangle target = new Triangle(50d, 80d, 50d, 5d, 6.427876, 5d);
         testTriangle(input, target);
     }
 
